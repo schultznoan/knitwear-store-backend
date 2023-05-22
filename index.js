@@ -52,7 +52,11 @@ server.get('/products/:id', async (req, res) => {
 
 server.post('/checkout', async (req, res) => {
     try {
-        res.json(req.body)
+        await client
+            .db('node-marketplace')
+            .collection('orders')
+            .insertOne(req.body)
+        res.send('Успешно!')
     } catch (err) {
         console.error(err)
     }
