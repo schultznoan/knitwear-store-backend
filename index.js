@@ -16,6 +16,7 @@ client.connect()
     .catch((err) => console.log(err))
 
 const server = express()
+server.use(express.json())
 server.use(bodyParser.json())
 server.use(cors())
 
@@ -56,7 +57,7 @@ server.post('/checkout', async (req, res) => {
         //     .db('node-marketplace')
         //     .collection('orders')
         //     .insertOne(req.body)
-        res.send(req.body)
+        res.json(req.body)
     } catch (err) {
         console.error(err)
     }
