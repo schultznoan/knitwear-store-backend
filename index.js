@@ -15,12 +15,8 @@ client.connect()
     .catch((err) => console.log(err))
 
 const server = express()
-const corsOptions = {
-    origin: 'http://a0819841.xsph.ru/', // домен сервиса, с которого будут приниматься запросы
-    optionsSuccessStatus: 200 // для старых браузеров
-}
 server.use(express.json())
-server.use(cors(corsOptions))
+server.use(cors())
 
 server.get('/categories', async (_, res) => {
     try {
