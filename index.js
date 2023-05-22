@@ -1,6 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const cors = require('cors')
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const client = new MongoClient('mongodb+srv://danchoo14:GpB529gxyFuVAruq@cluster0.1cgp7tx.mongodb.net/?retryWrites=true&w=majority', {
     serverApi: {
@@ -15,7 +16,7 @@ client.connect()
     .catch((err) => console.log(err))
 
 const server = express()
-server.use(express.json())
+server.use(bodyParser.json())
 server.use(cors())
 
 server.get('/categories', async (_, res) => {
@@ -55,7 +56,7 @@ server.post('/checkout', async (req, res) => {
         //     .db('node-marketplace')
         //     .collection('orders')
         //     .insertOne(req.body)
-        res.send('Успешно!')
+        res.send(req.body)
     } catch (err) {
         console.error(err)
     }
