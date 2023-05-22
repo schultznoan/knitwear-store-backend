@@ -16,9 +16,10 @@ client.connect()
     .catch((err) => console.log(err))
 
 const server = express()
+server.use(cors())
 server.use(express.json())
 server.use(bodyParser.json())
-server.use(cors())
+server.use(express.urlencoded({ extended: true }))
 
 server.get('/categories', async (_, res) => {
     try {
