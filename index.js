@@ -55,7 +55,7 @@ server.post('/checkout', async (req) => {
         await client
             .db('node-marketplace')
             .collection('orders')
-            .insertOne(req.body)
+            .insertOne(JSON.parse(req.body))
 
     } catch (err) {
         console.error(err)
