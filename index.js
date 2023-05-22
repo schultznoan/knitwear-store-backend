@@ -1,5 +1,5 @@
 const { MongoClient, ServerApiVersion } = require('mongodb')
-const fs = require('fs')
+const cors = require('cors')
 const express = require('express')
 
 const client = new MongoClient('mongodb+srv://danchoo14:GpB529gxyFuVAruq@cluster0.1cgp7tx.mongodb.net/?retryWrites=true&w=majority', {
@@ -15,7 +15,12 @@ client.connect()
     .catch((err) => console.log(err))
 
 const server = express()
+const corsOptions = {
+    origin: 'http://a0819841.xsph.ru/', // домен сервиса, с которого будут приниматься запросы
+    optionsSuccessStatus: 200 // для старых браузеров
+}
 server.use(express.json())
+server.use(cors(corsOptions))
 
 server.get('/categories', async (_, res) => {
     try {
