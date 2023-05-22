@@ -47,4 +47,4 @@ server.get('/products/:id', async (req, res) => {
     }
 })
 
-server.listen(process.env.POST || 3000)
+server.listen(process.env.PORT || 3000)
