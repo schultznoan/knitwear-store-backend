@@ -51,7 +51,7 @@ server.get('/products/:id', async (req, res) => {
 })
 
 server.post('/checkout', async (req) => {
-    console.log(req.body)
+    console.log(req)
     try {
         await client
             .db('node-marketplace')
