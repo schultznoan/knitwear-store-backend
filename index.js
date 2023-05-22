@@ -48,8 +48,8 @@ server.get('/products/:id', async (req, res) => {
     }
 })
 
-server.post('/checkout', async (req) => {
-    console.log(req)
+server.post('/checkout', async (req, _) => {
+    console.log(req.body)
     try {
         await client
             .db('node-marketplace')
