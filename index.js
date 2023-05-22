@@ -50,4 +50,16 @@ server.get('/products/:id', async (req, res) => {
     }
 })
 
+server.post('/checkout', async (req) => {
+    try {
+        await client
+            .db('node-marketplace')
+            .collection('orders')
+            .insertOne(req.body)
+
+    } catch (err) {
+        console.error(err)
+    }
+})
+
 server.listen(process.env.PORT || 3000)
