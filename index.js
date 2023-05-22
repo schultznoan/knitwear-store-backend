@@ -18,7 +18,6 @@ client.connect()
 const server = express()
 server.use(cors())
 server.use(express.json())
-server.use(bodyParser.json())
 server.use(express.urlencoded({ extended: true }))
 
 server.get('/categories', async (_, res) => {
@@ -52,13 +51,8 @@ server.get('/products/:id', async (req, res) => {
 })
 
 server.post('/checkout', async (req, res) => {
-    const data = await req.body
     try {
-        // await client
-        //     .db('node-marketplace')
-        //     .collection('orders')
-        //     .insertOne(req.body)
-        res.json(data)
+        res.json(req.body)
     } catch (err) {
         console.error(err)
     }
