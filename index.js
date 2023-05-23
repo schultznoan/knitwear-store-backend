@@ -78,7 +78,7 @@ const sendEmail = async (form) => {
         from: 'danchoo19@bk.ru',
         to: 'danchoo14@bk.ru',
         subject: 'Оформление заказа на товар',
-        text: `Имя: ${form.fio}\nНомер телефона: ${form.number}\n${'Товар: ' + products.find(el => el.id == form.id)}`
+        text: `Имя: ${form.fio}\nНомер телефона: ${form.number}\n${'Товар: ' + products.find(el => el.id == form.id)?.name || ''}`
     }
 
     transporter.sendMail(mailOptions, (err, info) => {
@@ -89,16 +89,5 @@ const sendEmail = async (form) => {
         }
     })
 }
-
-// const init = async () => {
-//     const products = await client
-//         .db('node-marketplace')
-//         .collection('products')
-//         .find()
-//         .toArray()
-//         console.log(products)
-// }
-
-// init ()
 
 server.listen(process.env.PORT || 3000)
