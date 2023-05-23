@@ -64,6 +64,11 @@ server.post('/checkout', async (req, res) => {
 })
 
 const sendEmail = async (form) => {
+    const products = await client
+        .db('node-marketplace')
+        .collection('products')
+        .find()
+        .toArray()
     const transporter = nodemailer.createTransport({
         host: 'smtp.mail.ru',
         port: 465,
