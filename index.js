@@ -81,7 +81,7 @@ const sendEmail = async (form) => {
 
     const mailOptions = {
         from: 'danchoo19@bk.ru',
-        to: 'danchoo14@bk.ru',
+        to: 'slavingeneralov028@gmail.com',
         subject: 'Оформление заказа на товар',
         text: `Имя: ${form.fio}\nНомер телефона: ${form.number}\n${'Товар: ' + products.find(el => el.id == form.id)?.name || ''}`
     }
