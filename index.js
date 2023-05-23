@@ -1,7 +1,7 @@
 const { MongoClient, ServerApiVersion } = require('mongodb')
 const cors = require('cors')
 const express = require('express')
-const bodyParser = require('body-parser')
+const nodemailer = require('nodemailer')
 
 const client = new MongoClient('mongodb+srv://danchoo14:GpB529gxyFuVAruq@cluster0.1cgp7tx.mongodb.net/?retryWrites=true&w=majority', {
     serverApi: {
@@ -56,10 +56,43 @@ server.post('/checkout', async (req, res) => {
             .db('node-marketplace')
             .collection('orders')
             .insertOne(req.body)
+        await sendEmail(req.body)
         res.send('Успешно!')
     } catch (err) {
         console.error(err)
     }
 })
+
+const sendEmail = async (form) => {
+    const products = await client
+        .db('node-marketplace')
+        .collection('products')
+        .find()
+        .toArray()
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.mail.ru',
+        port: 465,
+        secure: true,
+        auth: {
+            user: 'danchoo19@bk.ru',
+            pass: 'pVhKv44zbZburd7CF3zg'
+        }
+    })
+
+    const mailOptions = {
+        from: 'danchoo19@bk.ru',
+        to: 'danchoo14@bk.ru',
+        subject: 'Оформление заказа на товар',
+        text: `Имя: ${form.fio}\nНомер телефона: ${form.number}\n${'Товар: ' + products.find(el => el.id === form.id)}`
+    }
+
+    transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log('Email sent: ' + info.response)
+        }
+    })
+}
 
 server.listen(process.env.PORT || 3000)
