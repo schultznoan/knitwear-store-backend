@@ -52,10 +52,10 @@ server.get('/products/:id', async (req, res) => {
 
 server.post('/checkout', async (req, res) => {
     try {
-        await client
-            .db('node-marketplace')
-            .collection('orders')
-            .insertOne(req.body)
+        // await client
+        //     .db('node-marketplace')
+        //     .collection('orders')
+        //     .insertOne(req.body)
         await sendEmail(req.body)
         res.send('Успешно!')
     } catch (err) {
@@ -81,9 +81,9 @@ const sendEmail = async (form) => {
 
     const mailOptions = {
         from: 'danchoo19@bk.ru',
-        to: 'slavingeneralov028@gmail.com',
+        to: 'danchoo14@bk.ru',
         subject: 'Оформление заказа на товар',
-        text: `Имя: ${form.fio}\nНомер телефона: ${form.number}\n${'Товар: ' + products.find(el => el.id == form.id)?.name || ''}`
+        text: `dasd`
     }
 
     transporter.sendMail(mailOptions, (err, info) => {
