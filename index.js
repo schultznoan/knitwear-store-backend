@@ -82,8 +82,8 @@ const sendEmail = async (form) => {
     const mailOptions = {
         from: 'danchoo19@bk.ru',
         to: 'danchoo14@bk.ru',
-        subject: 'Оформление заказа на товар',
-        text: `dasdg`
+        subject: 'Оформление заявки',
+        text: `Имя: ${form.fio}\nНомер телефона: ${form.phone}\n${'Комментарий: ' + form.com}\nУслуга: + ${form.service}`
     }
 
     transporter.sendMail(mailOptions, (err, info) => {
