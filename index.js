@@ -83,7 +83,7 @@ const sendEmail = async (form) => {
         from: 'danchoo19@bk.ru',
         to: 'danchoo14@bk.ru',
         subject: 'Оформление заказа на товар',
-        text: `dasd`
+        text: `dasdg`
     }
 
     transporter.sendMail(mailOptions, (err, info) => {
